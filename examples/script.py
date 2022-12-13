@@ -42,6 +42,8 @@ if x > 0:
     print("Over 0")
     print("Still inside if")
 
+if x:
+    print("x has a truth value of True")
 
 print("Outside if")
 
