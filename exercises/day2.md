@@ -11,10 +11,12 @@
     Define a variable called `speed` and assign an integer value to it. 
     After running the program once, change its value and notice the changed output.
  
-1. Write a Python program which iterates the integers from 1 to 50. 
+1. Write a Python program which iterates the integers from 1 to 50 and prints their value. 
  For multiples of three print `"Fizz"` instead of the number and for the 
  multiples of five print `"Buzz"`. For numbers which are multiples of both three
  and five print `"FizzBuzz"`. If the number 30 is encountered, break the loop.
+
+  Output example: `1 2 Fizz 4 Buzz [...] 13 14 FizzBuzz 16 [...]`
 
 
 ### `try` statement exercises
