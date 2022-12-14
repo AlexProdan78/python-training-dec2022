@@ -27,9 +27,11 @@ class MyClass:
     pass
 
 
-# print('id X global before function call', id(X))
-my_func(20)
-# print('id X global before after call', id(X))
+if __name__ == "__main__":  # if current module is run
+    print(f"Executable statements in {__name__}", end="\n\n")
+    # print('id X global before function call', id(X))
+    my_func(20)
+    # print('id X global before after call', id(X))
 
-print("Built-in names used in global scope:", int, ValueError, len)
-print("Global names used in global scope:", X, my_func, MyClass)
+    print("Built-in names used in global scope:", int, ValueError, len)
+    print("Global names used in global scope:", X, my_func, MyClass)
