@@ -3,17 +3,32 @@ from datetime import date
 
 class Person:
     count = 0  # class attribute
+    MIN_DATE_OF_BIRTH = date(1950, 1, 1)
 
     def __init__(self, name, date_of_birth):
         self.name = name  # instance attributes
         self.date_of_birth = date_of_birth
-        self.increment_count()
+        self._increment_count()
+
+    @property
+    def date_of_birth(self):  # getter
+        return self._date_of_birth
+
+    @date_of_birth.setter
+    def date_of_birth(self, value):  # setter
+        if value < self.MIN_DATE_OF_BIRTH:
+            raise ValueError(f"Invalid date of birth.")
+        self._date_of_birth = value
+
+    @property
+    def age(self):
+        return self.compute_age(self.date_of_birth)
 
     def greet(self, greeting):  # instance method
         print(f"{greeting.capitalize()}! I'm {self.name}.")
 
     @classmethod
-    def increment_count(cls):  # class method
+    def _increment_count(cls):  # class method
         cls.count += 1
 
     @staticmethod
@@ -38,6 +53,10 @@ if __name__ == "__main__":
     # Changing attributes
     # Person.count += 1
     p1.name = "Maia"
+    try:
+        p1.date_of_birth = date(1900, 1, 1)
+    except ValueError as ex:
+        print(ex)
 
     print(p1.name, p2.name, p1.name is p2.name)
     print(Person.count, p1.count is p2.count, p1.count is Person.count)
@@ -55,4 +74,4 @@ if __name__ == "__main__":
 
     print("Persons created:", Person.count)
 
-    print(f"{p1.name}'s age:", Person.compute_age(p1.date_of_birth))
+    print(f"{p1.name}'s age:", p1.age)
