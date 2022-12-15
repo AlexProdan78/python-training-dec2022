@@ -40,7 +40,6 @@ print(filter_long_words(min_length=10))
 
 
 def filter_long_words_v2(*words, min_length=None):
-    # long_words = [word for word in words if len(word) > min_length]
     if min_length is None:
         return list(words)  # return early pattern
 
@@ -51,10 +50,26 @@ def filter_long_words_v2(*words, min_length=None):
     return long_words
 
 
+def filter_long_words_v3(*words, min_length=None):
+    # without return early pattern
+    long_words = []
+
+    if min_length is not None:
+        for word in words:
+            if len(word) > min_length:
+                long_words.append(word)
+
+    return long_words
+
+
 print(filter_long_words_v2('hello', 'hi', 'bye', min_length=2))
 print(filter_long_words_v2('hello', 'hi', ''))
 print(filter_long_words_v2())
 print(filter_long_words_v2(min_length=10))
+
+
+def filter_long_words_v4(*words, min_length=None):
+    return [word for word in words if len(word) > min_length and min_length]
 
 
 # Write a function that builds html tags. Apply html escaping for html special
