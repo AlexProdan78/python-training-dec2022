@@ -1,5 +1,8 @@
 from datetime import date
 
+# Inheritance: instance of Child class is instance of Parent class
+# Composition: instance of ClassA has instance of ClassB
+
 
 class Person:
     count = 0  # class attribute
@@ -17,7 +20,7 @@ class Person:
     @date_of_birth.setter
     def date_of_birth(self, value):  # setter
         if value < self.MIN_DATE_OF_BIRTH:
-            raise ValueError(f"Invalid date of birth.")
+            raise ValueError("Invalid date of birth.")
         self._date_of_birth = value
 
     @property
@@ -44,6 +47,21 @@ class Person:
 
     def __lt__(self, other):
         return self.date_of_birth > other.date_of_birth
+
+
+class Student(Person):
+    def __init__(self, name, date_of_birth, university):
+        super().__init__(name, date_of_birth)
+        self.university = university
+
+    def __str__(self):
+        return (f"{self.name} is {self.age} years old and "
+                f"studies at {self.university}.")
+
+    def get_grade(self, subject):
+        if subject == "maths":
+            return 8
+        return 9
 
 
 if __name__ == "__main__":
@@ -75,3 +93,9 @@ if __name__ == "__main__":
     print("Persons created:", Person.count)
 
     print(f"{p1.name}'s age:", p1.age)
+
+    s1 = Student("Andrei", date(2002, 5, 2), "Universitatea București")
+    print(s1)
+    print(f'{p1.name} is younger than {s1.name}:', p1 < s1)
+
+    print(s1.get_grade("statistics"))
